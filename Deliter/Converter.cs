@@ -369,6 +369,9 @@ namespace Deliter
 
 			string resources = Path.Combine(directory, "resources");
 
+			if (File.Exists(backupPartialPath))
+				return;
+
 			// Detect previous failed conversion attempts
 			// This is due to a bug that would crash halfway through conversion
 
@@ -434,7 +437,7 @@ namespace Deliter
 
 			if (!File.Exists(backupPath)) {
 				// If the mod still has some existing dependencies in deli, don't delete the deli.
-				// Rename mod to .deli.bak.partial so that it doesn't run previous fixes for bugs.
+				// Rename mod to .deli.partial.bak so that it doesn't run previous fixes for bugs.
 				if (partial) {
 					File.Copy(path, backupPartialPath, true);
 				}
